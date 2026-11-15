@@ -328,4 +328,6 @@ button:focus-visible { outline:2px solid #fff; outline-offset:3px; }
   .node-pasillo { left:80%; top:23%; }
 }
 
-
+.panorama {
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-out !important;
+}

@@ -95,10 +95,21 @@ escalera1: {
     description: "Pasillo largo ubicado al subir por la Escalera N°3, que conduce hacia el comedor de la escuela y da acceso a cuatro salones de clase.",
     image: "PROYECTO ESCUELA CLIC/Pasillo Comedor.jpeg",
     hotspots: [
-      { x: 58, y: 40, target: "escalera3", label: "Volver a la Escalera N°3" }
+      { x: 58, y: 40, target: "escalera3", label: "Volver a la Escalera N°3" },
+      { x: 14, y: 45, target: "preceptoriacomedor", label: "Ir a Preceptoria" }
     ]
   },
-  
+
+preceptoriacomedor: {
+    title: "Preceptoria de ciclo superior",
+    eyebrow: "ESTÁS EN",
+    description: "Oficina dedicada al seguimiento academico, control de asistencia y atencion a estudiantes y tutores.",
+    image: "PROYECTO ESCUELA CLIC/Preceptoria-Comedor.jpeg",
+    hotspots: [
+      { x: 80, y: 40, target: "pasillocomedor", label: "Volver al pasillo" }
+    ]
+  },
+
   escalera2: {
     title: "Escalera N°2",
     eyebrow: "ESTÁS EN",
@@ -209,7 +220,7 @@ preceptoriadetaller: {
   }
 };
 
-const route = ["pasillocomedor","galeria","sum", "patio1", "entrada", "patio2", "pasillo", "entrada2", "escalera1", "preceptoriadetaller", "pasilloescalera1", "preceptoria2dopiso", "saladecomputación", "escalera2", "pasilloescalera3", "escalera3"];
+const route = ["preceptoriacomedor","pasillocomedor","galeria","sum", "patio1", "entrada", "patio2", "pasillo", "entrada2", "escalera1", "preceptoriadetaller", "pasilloescalera1", "preceptoria2dopiso", "saladecomputación", "escalera2", "pasilloescalera3", "escalera3"];
 let current = 0;
 
 const viewer = document.getElementById("viewer");
@@ -266,15 +277,16 @@ function buildHotspots(location) {
     button.dataset.target = spot.target;
     button.title = spot.label;
     
-    // AHORA REEMPLAZAMOS EL signo más <SPAN>+</SPAN> POR UNA IMAGEN <IMG>
-    // Asegúrate de que la ruta 'PROYECTO ESCUELA CLIC/flecha-adelante.png' sea correcta.
     button.innerHTML = `<img src="PROYECTO ESCUELA CLIC/hotpos.jfif" alt="Avanzar"><small>${spot.label}</small>`;
     
     button.addEventListener("pointerdown", e => e.stopPropagation());
+    
+    // Con esto, al hacerle un solo clic te lleva directo a la imagen sin tocar nada más
     button.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (!moved) goTo(spot.target);
+      goTo(spot.target);
     });
+    
     hotspots.appendChild(button);
   });
 }
@@ -291,9 +303,9 @@ function updateUI(location) {
     node.classList.toggle("active", node.dataset.location === route[current]);
   });
 
-  document.getElementById("panelTitle").textContent = location.title;
-  document.getElementById("panelText").textContent = location.text;
-  document.getElementById("panelSpace").textContent = location.space;
+ document.getElementById("panelTitle").textContent = location.title;
+  document.getElementById("panelText").textContent = location.text || location.description || "Sin información adicional disponible.";
+  document.getElementById("panelSpace").textContent = location.space || "Sector escolar";
   document.getElementById("panelRoute").textContent =
     `${String(current + 1).padStart(2, "0")} / ${String(route.length).padStart(2, "0")}`;
 }
@@ -304,11 +316,16 @@ function loadLocation(id, initialPan = 50) {
 
   current = route.indexOf(id);
 
+  // 1. Efecto de avance (zoom suave) y desvanecimiento al salir
   panorama.style.opacity = "0";
+  panorama.style.transform = "scale(1.06)";
+  hotspots.style.opacity = "0";
+
   setTimeout(() => {
     panorama.src = location.image;
     panorama.alt = `Panorámica 360°: ${location.title}`;
-    panorama.onload = () => {
+
+    const initViewer = () => {
       worldWidth = panorama.naturalWidth * (viewer.clientHeight / panorama.naturalHeight);
       world.style.width = `${worldWidth}px`;
       hotspots.style.width = `${worldWidth}px`;
@@ -318,9 +335,23 @@ function loadLocation(id, initialPan = 50) {
       buildHotspots(location);
       updateUI(location);
 
-      requestAnimationFrame(() => panorama.style.opacity = "1");
+      // 2. Reseteamos el zoom sin animación para que la nueva foto entre limpia
+      panorama.style.transition = "none";
+      panorama.style.transform = "scale(1)";
+      
+      // Forzamos al navegador a aplicar el cambio y activamos la transición de entrada
+      void panorama.offsetWidth; 
+      panorama.style.transition = "";
+      
+      panorama.style.opacity = "1";
+      hotspots.style.opacity = "1";
     };
-  }, 140);
+
+    panorama.onload = initViewer;
+    if (panorama.complete) {
+      initViewer();
+    }
+  }, 350);
 }
 
 function goTo(id) {
@@ -446,5 +477,5 @@ window.addEventListener("resize", () => {
   renderX();
 });
 
-panorama.style.transition = "opacity .35s ease";
+panorama.style.transition = "opacity 0.6s ease-in-out";
 

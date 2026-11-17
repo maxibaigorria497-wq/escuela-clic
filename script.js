@@ -106,7 +106,86 @@ preceptoriacomedor: {
     description: "Oficina dedicada al seguimiento academico, control de asistencia y atencion a estudiantes y tutores.",
     image: "PROYECTO ESCUELA CLIC/Preceptoria-Comedor.jpeg",
     hotspots: [
-      { x: 80, y: 40, target: "pasillocomedor", label: "Volver al pasillo" }
+      { x: 80, y: 40, target: "pasillocomedor", label: "Volver al pasillo" },
+      { x: 40, y: 40, target: "comedor", label: "Ir al comedor"}
+    ]
+  },
+
+  comedor: {
+    title: "Comedor",
+    eyebrow: "ESTÁS EN",
+    description: "",
+    image: "PROYECTO ESCUELA CLIC/Comedor.jpeg",
+    hotspots: [
+      { x: 67, y: 40, target: "preceptoriacomedor", label: "Volver al pasillo" }
+      
+    ]
+  },
+
+patio: {
+    title: "Patio externo",
+    eyebrow: "ESTÁS EN",
+    description: "Es un espacio de convivencia donde los alumnos comparten recreos y diferentes actividades. Alli se encuentran seis aulas, una preceptoría y el lugar destinado a estacionar bicicletas. Tambien se realizan el izamiento y el arrio de la bandera nacional.",
+    image: "PROYECTO ESCUELA CLIC/Patio.jpg",
+    hotspots: [
+      { x: 58, y: 52, target: "sum", label: "ir al sum" },
+      { x: 27, y: 52, target: "pasillocomputacion", label: "ir al polideportivo/sala de informatica" },
+      { x: 36, y: 52, target: "pasillolaboratorio", label: "ir al pasillo" }
+      
+    ]
+  },
+
+pasillocomputacion: {
+    title: "Pasillo al polideportivo",
+    eyebrow: "ESTÁS EN",
+    description: "Es el espacio que conduce al polideportivo y permite el acceso a la sala de programacion",
+    image: "PROYECTO ESCUELA CLIC/Pasillo polideportivo.jpg",
+    hotspots: [
+      { x: 68, y: 52, target: "patio", label: "ir al patio externo" },
+      { x: 15, y: 52, target: "saladeinformatica", label: "Ir a la sala de informatica" },
+      { x: 26, y: 52, target: "polideportivo_entrada", label: "Ir al polideportivo" }
+    ]
+  },
+
+saladeinformatica: {
+    title: "Sala de informatica",
+    eyebrow: "ESTÁS EN",
+    description: "En esta sala de informatica donde cursan los alumnos del ciclo superior de la Tecnicatura en Programación. Aca tienen sus clases practicas para aprender a desarrollar sistemas, páginas web, aplicaciones y base de datos.",
+    image: "PROYECTO ESCUELA CLIC/laboratorio de programacion.jfif",
+    hotspots: [
+      { x: 58, y: 49, target: "pasillocomputacion", label: "Salir" }
+    ]
+  },
+
+  polideportivo_entrada: {
+    title: "Sector Techado del Polideportivo",
+    eyebrow: "ESTÁS EN",
+    description: "Este es el acceso principal y sector techado del polideportivo. Es un espacio cubierto donde los alumnos tienen clases de educacion fisica, realiza activividades recreativas y se reunen en días de lluvia o mucho calor.",
+    image: "PROYECTO ESCUELA CLIC/polideportivogaleria.jfif",
+    hotspots: [
+      { x: 37, y: 44, target: "pasillocomputacion", label: "Salir" },
+      { x: 15, y: 44, target: "polideportivo", label: "Ir al polideportivo" }
+    ]
+  },
+
+polideportivo: {
+    title: "Polideportivo - Sector Descubierto",
+    eyebrow: "ESTÁS EN",
+    description: "Este es el sector abierto y al aire libre del polideportivo. Aca se realizan prácticas deportivas, partidos, entrenamientos y actividades fisicas duarnte las clases de educación fisica y eventos escolares.",
+    image: "PROYECTO ESCUELA CLIC/Gemini_Generated_Image_am6q9cam6q9cam6q.jfif",
+    hotspots: [
+      { x: 49, y: 44, target: "polideportivo_entrada", label: "Ir al sector techado" },
+      { x: 60, y: 44, target: "sumpolideportivo", label: "Ir al SUM del polideportivo" }
+    ]
+  },
+
+sumpolideportivo: {
+    title: "Polideportivo - Sector Descubierto",
+    eyebrow: "ESTÁS EN",
+    description: "Este es el salón de usos múltimples del polideportivo. Aunque es mas chico que el salón principal, es el espacio cerrado que se utiliza para organizar torneos, reuniones, eventos deportivos y distintas actividades con los alumnos.",
+    image: "PROYECTO ESCUELA CLIC/Sum polideportivo.jpg",
+    hotspots: [
+      { x: 74, y: 44, target: "polideportivo", label: "Ir al polideportivo" }
     ]
   },
 
@@ -151,8 +230,9 @@ preceptoriacomedor: {
     space: "SUM / Salón de usos múltiples",
     image: "PROYECTO ESCUELA CLIC/SUM.jpeg",
     hotspots: [
-      { x: 77, y: 47, target: "patio1", label: "Salir al patio" },
-      { x: 50, y: 47, target: "entrada2", label: "Volver a la segunda entrada" }
+      { x: 77, y: 47, target: "patio", label: "Salir al patio" },
+      { x: 50, y: 47, target: "entrada2", label: "Volver a la segunda entrada"},
+      { x: 25, y: 47, target: "pasillo", label: "Ir al pasillo exterior" }
     ]
   },
 
@@ -166,7 +246,8 @@ preceptoriacomedor: {
     hotspots: [
       { x: 78, y: 48, target: "preceptoriadetaller", label: "Ir al anexo entre preceptoria y box" },
       { x: 8, y: 48, target: "entrada", label: "Volver a entrada" },
-      { x: 53, y: 45, target: "galeria", label: "Ir a galeria" }
+      { x: 53, y: 45, target: "galeria", label: "Ir a galeria" },
+      {x: 28, y: 45, target: "sum", label: "Ir al SUM" }
     ]
   },
 
@@ -177,10 +258,48 @@ preceptoriacomedor: {
     text: "Esta panorámica muestra uno de los recorridos exteriores de la escuela y conecta con el patio que vemos en la quinta imagen.",
     image: "PROYECTO ESCUELA CLIC/Galeria- Kiosco-Cocina.jpeg",
     hotspots: [
-      { x: 82, y: 48, target: "pasillo", label: "Volver" }
+      { x: 82, y: 48, target: "pasillo", label: "Volver" },
+      { x: 15, y: 48, target: "pasillolaboratorio", label: "Ir hacia el patio externo" }
+    ]
+  },
+
+  pasillolaboratorio: {
+    title: "Pasillo",
+    eyebrow: "ESTÁS EN",
+    description: "Espacio en el que se conecta el lugar en el que los alumnos dejan sus bicicletas, comedor y patio externo",
+    text: "Esta panorámica muestra uno de los recorridos exteriores de la escuela y conecta con el patio que vemos en la quinta imagen.",
+    image: "PROYECTO ESCUELA CLIC/patio bicicleta.jfif",
+    hotspots: [
+      { x: 58, y: 48, target: "galeria", label: "Ir a la galeria" },
+      { x: 15, y: 48, target: "laboratorio", label: "Ir al laboratorio" },
+      { x: 5, y: 51, target: "patio", label: "Ir al patio externo" }
+    ]
+  },
+
+laboratorio: {
+    title: "Laboratorio",
+    eyebrow: "ESTÁS EN",
+    description: "Espacio destinado al desarrollo de clases practicas de la orientacion de Quimica, correspondientes al cico superior.",
+    text: "Esta panorámica muestra uno de los recorridos exteriores de la escuela y conecta con el patio que vemos en la quinta imagen.",
+    image: "PROYECTO ESCUELA CLIC/laboratorio de quimica.jfif",
+    hotspots: [
+      { x: 21, y: 30, target: "pasillolaboratorio", label: "Salir" }
+
+    ]
+  },
+
+  box: {
+    title: "Boxes",
+    eyebrow: "ESTÁS EN",
+    description: "Sala amplia dividida en distintos boxes o espacios separados, donde se dictan clases de Formación Profesional y actividades de taller.",
+    text: "Esta panorámica muestra uno de los recorridos exteriores de la escuela y conecta con el patio que vemos en la quinta imagen.",
+    image: "PROYECTO ESCUELA CLIC/Box.jpeg",
+    hotspots: [
+      { x: 85, y: 39, target: "preceptoriadetaller", label: "Salir" }
     ]
   },
   
+
 preceptoriadetaller: {
     title: "Anexo entre preceptoria de taller y box",
     eyebrow: "ESTÁS EN",
@@ -188,39 +307,14 @@ preceptoriadetaller: {
     space: "Anexo",
     image: "PROYECTO ESCUELA CLIC/Preceptoria de taller.jpeg",
     hotspots: [
-      { x: 45, y: 42, target: "pasillo", label: "Volver al pasillo externo" }
+      { x: 45, y: 42, target: "pasillo", label: "Volver al pasillo externo" },
+      { x: 65, y: 39, target: "box", label: "Ir a los boxes" }
     ]
   },
  
+}
 
-  patio1: {
-    title: "Patio junto al SUM",
-    eyebrow: "ESTÁS EN",
-    description: "El patio exterior al que se accede directamente desde el salón.",
-    text: "Esta es la cuarta panorámica. Es el patio que se encuentra conectado con la primera imagen, el salón de usos múltiples.",
-    space: "Patio exterior · sector SUM",
-    image: "PROYECTO ESCUELA CLIC/Patio.jpeg",
-    hotspots: [
-      { x: 19, y: 50, target: "sum", label: "Volver al SUM" },
-      { x: 76, y: 48, target: "entrada", label: "Ir a entrada" }
-    ]
-  },
-
-  patio2: {
-    title: "Patio central",
-    eyebrow: "ESTÁS EN",
-    description: "Un espacio abierto de circulación, encuentro y actividades.",
-    text: "Esta es la quinta panorámica, vinculada con el recorrido exterior de la segunda imagen. Es un sector amplio del patio central.",
-    space: "Patio central",
-    image: "assets/05-patio-desde-pasillo.jpg",
-    hotspots: [
-      { x: 24, y: 48, target: "pasillo", label: "Volver al pasillo" },
-      { x: 58, y: 48, target: "entrada", label: "Ir a entrada" }
-    ]
-  }
-};
-
-const route = ["preceptoriacomedor","pasillocomedor","galeria","sum", "patio1", "entrada", "patio2", "pasillo", "entrada2", "escalera1", "preceptoriadetaller", "pasilloescalera1", "preceptoria2dopiso", "saladecomputación", "escalera2", "pasilloescalera3", "escalera3"];
+const route = ["sumpolideportivo","polideportivo","polideportivo_entrada","saladeinformatica","box", "laboratorio", "pasillolaboratorio","pasillocomputacion","comedor","preceptoriacomedor","pasillocomedor","galeria","sum", "patio", "entrada", "pasillo", "entrada2", "escalera1", "preceptoriadetaller", "pasilloescalera1", "preceptoria2dopiso", "saladecomputación", "escalera2", "pasilloescalera3", "escalera3"];
 let current = 0;
 
 const viewer = document.getElementById("viewer");
@@ -303,9 +397,9 @@ function updateUI(location) {
     node.classList.toggle("active", node.dataset.location === route[current]);
   });
 
- document.getElementById("panelTitle").textContent = location.title;
-  document.getElementById("panelText").textContent = location.text || location.description || "Sin información adicional disponible.";
-  document.getElementById("panelSpace").textContent = location.space || "Sector escolar";
+  document.getElementById("panelTitle").textContent = location.title;
+  document.getElementById("panelText").textContent = location.text;
+  document.getElementById("panelSpace").textContent = location.space;
   document.getElementById("panelRoute").textContent =
     `${String(current + 1).padStart(2, "0")} / ${String(route.length).padStart(2, "0")}`;
 }
